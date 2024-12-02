@@ -1,5 +1,7 @@
 import './App.css'
 import {useState} from "react";
+import Button from "./components/Button.jsx";
+import Counter from "./components/Counter.jsx";
 
 function App() {
     const [Aardbeiencounter, setAardbeienCounter] = useState(0);
@@ -7,106 +9,58 @@ function App() {
     const [Appelscounter, setAppelsCounter] = useState(0);
     const [Kiwiscounter, setKiwisCounter] = useState(0);
 
-    function resetAll() {
-        return setAardbeienCounter(0)
-            +
-            setBananenCounter(0)
-            +
-            setAppelsCounter(0)
-            +
-            setKiwisCounter(0)
-    }
+    const resetAll = () => {
+        setAardbeienCounter(0);
+        setBananenCounter(0);
+        setAppelsCounter(0);
+        setKiwisCounter(0);
+    };
 
     const [firstNameValue, setFirstNameValue] = useState("");
-
     const [lastNameValue, setLastNameValue] = useState("");
-
     const [age, setAge] = useState(0);
-
     const [zipCode, setZipCode] = useState("");
-
     const [delivery, setDelivery] = useState("");
-
     const [radioButton, setRadioButton] = useState("");
-
     const [termsAndConditions, setTermsAndConditions] = useState(false);
-
 
     return (
         <>
             <h1>Fruitmand bezorgservice</h1>
             <section>
                 <article className="outer-container">
-                    <h3>🍓 Aardbeien</h3>
-                    <button
-                        type="button"
-                        onClick={() =>
-                            setAardbeienCounter(Aardbeiencounter ? Aardbeiencounter - 1 : 0)}>
-                        -
-
-                    </button>
-                    <p>{Aardbeiencounter}</p>
-                    <button
-                        type="button"
-                        onClick={() =>
-                            setAardbeienCounter(Aardbeiencounter + 1)}>
-                        +
-                    </button>
+                    <Counter
+                        label="🍓 Aardbeien"
+                        count={Aardbeiencounter}
+                        plus={() => setAardbeienCounter(Aardbeiencounter + 1)}
+                        minus={() => setAardbeienCounter(Aardbeiencounter ? Aardbeiencounter - 1 : 0)}
+                    />
                 </article>
                 <article className="outer-container">
-                    <h3>🍌 Bananen</h3>
-                    <button
-                        type="button"
-                        onClick={() =>
-                            setBananenCounter(Bananencounter ? Bananencounter - 1 : 0)}>
-                        -
-
-                    </button>
-                    <p>{Bananencounter}</p>
-                    <button
-                        type="button"
-                        onClick={() =>
-                            setBananenCounter(Bananencounter + 1)}>
-                        +
-                    </button>
+                    <Counter
+                        label="🍌 Bananen"
+                        count={Bananencounter}
+                        plus={() => setBananenCounter(Bananencounter + 1)}
+                        minus={() => setBananenCounter(Bananencounter ? Bananencounter - 1 : 0)}
+                    />
                 </article>
                 <article className="outer-container">
-                    <h3>🍏 Appels</h3>
-                    <button
-                        type="button"
-                        onClick={() =>
-                            setAppelsCounter(Appelscounter ? Appelscounter - 1 : 0)}>
-                        -
-
-                    </button>
-                    <p>{Appelscounter}</p>
-                    <button
-                        type="button"
-                        onClick={() =>
-                            setAppelsCounter(Appelscounter + 1)}>
-                        +
-                    </button>
+                    <Counter
+                        label="🍏 Appels"
+                        count={Appelscounter}
+                        plus={() => setAppelsCounter(Appelscounter + 1)}
+                        minus={() => setAppelsCounter(Appelscounter ? Appelscounter - 1 : 0)}
+                    />
                 </article>
                 <article className="outer-container">
-                    <h3>🥝 Kiwis</h3>0
-                    <button
-                        type="button"
-                        onClick={() =>
-                            setKiwisCounter(Kiwiscounter ? Kiwiscounter - 1 : 0)}>
-                        -
-                    </button>
-                    <p>{Kiwiscounter}</p>
-                    <button
-                        type="button"
-                        onClick={() =>
-                            setKiwisCounter(Kiwiscounter + 1)}>
-                        +
-                    </button>
+                    <Counter
+                        label="🥝 Kiwi's"
+                        count={Kiwiscounter}
+                        plus={() => setKiwisCounter(Kiwiscounter + 1)}
+                        minus={() => setKiwisCounter(Kiwiscounter ? Kiwiscounter - 1 : 0)}
+                    />
                 </article>
-                <button
-                    type="button" onClick={resetAll}>
-                    Reset
-                </button>
+                <Button label="Reset" onClick={resetAll} />
             </section>
             <section>
                 <form className="form-container">
@@ -208,10 +162,7 @@ function App() {
                         </input>
                         Ik ga akkoord met de voorwaarden
                     </label>
-                    <button type="submit"
-                    >
-                        Verzend
-                    </button>
+                    <Button label="Verzend" onClick={() => console.log("Formulier verzonden!")} />
                 </form>
             </section>
         </>
